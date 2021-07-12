@@ -29,6 +29,15 @@ class UrlIter:
         maxPagesCount = self.bs.find(id=MAXPAGEID).text
         return int(maxPagesCount)
 
+    def getIter(self):
+        QUARY_TUPLE = [
+            ('objID', 'txtFileID'),
+            ('metaId', 'txtMetaId'),
+            ('OrgId', 'txtOrgIdentifier'),
+            ('Ip', )
+        ]
+        pass
+
     # TODO
 
 def test():
