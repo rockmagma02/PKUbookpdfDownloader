@@ -1,0 +1,21 @@
+from io import BytesIO
+from PIL import Image
+from tqdm import tqdm
+import requests
+import os
+def imgDownloaderSingle(imgUrl, page, title = 'unknow', timeout = 60, targetPath = './img/', imgs = []):
+    os.makedirs(targetPath, exist_ok=True)
+    r = requests.get(imgUrl, timeout = timeout)
+    img = Image.open(BytesIO(r.content))
+    img.save(targetPath+title+'{:03d}'.format(page)+'.png', 'PNG')
+    imgs.append(img)
+    return imgs
+
+def imgDownloaderTotal(urlIter, quality = 'high'):
+    qualityDict = {'high': 1800, 'middle': 1500, 'low': 900}
+    imgs = []
+    with tqdm(total = urlIter.maxPages) as pagesCounter:
+        for page, imgUrl in urlIter.getIter(qualityDict[quality]):
+            imgs = imgDownloaderSingle(imgUrl, page, urlIter.title, imgs=imgs)
+            pagesCounter.update(1)
+    return imgs
