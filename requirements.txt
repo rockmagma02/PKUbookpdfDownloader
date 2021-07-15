@@ -1,0 +1,5 @@
+tqdm
+requests
+urllib3
+beautifulsoup4
+Pillow

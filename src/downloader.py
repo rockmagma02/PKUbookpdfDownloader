@@ -13,6 +13,9 @@ def imgDownloaderSingle(imgUrl, page, title = 'unknow', timeout = 60, targetPath
 
 def imgDownloaderTotal(urlIter, quality = 'high'):
     qualityDict = {'high': 1800, 'middle': 1500, 'low': 900}
+    if quality not in qualityDict.keys():
+        raise Exception('please give a right quality')
+    print('downloade begin')
     imgs = []
     with tqdm(total = urlIter.maxPages) as pagesCounter:
         for page, imgUrl in urlIter.getIter(qualityDict[quality]):

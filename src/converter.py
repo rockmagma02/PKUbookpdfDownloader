@@ -2,6 +2,7 @@ from PIL import Image
 import os
 
 def converter(imgs, PDFPath = './PDF/', title = 'unknow'):
+    print('generating a pdf......')
     os.makedirs(PDFPath, exist_ok=True)
     bookPath = PDFPath + title +'.pdf'
     if len(imgs) == 1:
