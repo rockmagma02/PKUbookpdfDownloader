@@ -7,8 +7,9 @@ def imgDownloaderSingle(imgUrl, page, title = 'unknow', timeout = 60, targetPath
     os.makedirs(targetPath, exist_ok=True)
     r = requests.get(imgUrl, timeout = timeout)
     img = Image.open(BytesIO(r.content))
-    img.save(targetPath+title+'{:03d}'.format(page)+'.png', 'PNG')
-    imgs.append(img)
+    imgFile = targetPath+title+'{:03d}'.format(page)+'.png'
+    img.save(imgFile, 'PNG')
+    imgs.append(imgFile)
     return imgs
 
 def imgDownloaderTotal(urlIter, quality = 'high'):
