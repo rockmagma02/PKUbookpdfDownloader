@@ -16,7 +16,7 @@ class UrlIter:
             r.encoding = r.apparent_encoding
             return r
         else:
-            raise Exception("connect fail, plaese check out url")
+            raise Exception("connect fail, plaese check url")
 
     def __getTitle(self):
         title = self.bs.find('title').text
